@@ -21,10 +21,10 @@ def on_connect(client, userdata, flags, rc):
     loop_flag = 0
 
 
-ORG = "k8pfj3"
+ORG = "ev8xy3"
 DEVICE_TYPE = "Camera"
-TOKEN = "nihX-O0@y)hqnoZMx2"
-DEVICE_ID = "080027391323"
+TOKEN = "4!_eKg4kr3JYFhoX4L"
+DEVICE_ID = "00000001"
 server = ORG + ".messaging.internetofthings.ibmcloud.com"
 pubTopic = "iot-2/evt/status/fmt/json"
 authMethod = "use-token-auth"
