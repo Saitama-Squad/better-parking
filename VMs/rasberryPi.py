@@ -3,7 +3,11 @@ import datetime
 import random
 import base64
 import json
+import os
 from time import sleep
+import requests
+from dotenv import load_dotenv
+load_dotenv()
 
 
 def on_publish(client, payload, result):
@@ -41,11 +45,27 @@ while loop_flag == 1:
     sleep(1)
 
 while True:
-    ranInd = random.randint(1, 3)
+    ranInd = random.randint(1, 8)
     print(ranInd)
-    # with open(str(ranInd)+".jpeg", "rb") as img_file:
-    #     b64 = base64.b64encode(img_file.read()).decode('utf-8')
-    metadata = "hello"  # {'id':DEVICE_ID, 'image':b64}
+    data = {
+        'grant_type': 'client_credentials',
+        'client_id': os.environ.get('ZARA_4_API_CLIENT_ID'),
+        'client_secret': os.environ.get('ZARA_4_API_CLIENT_SECRET'),
+        'scope': 'image-processing,usage'
+    }
+    response = requests.post(
+        'https://api.zara4.com/oauth/access_token', data=data).json()
+    AT = response['access_token']
+    files = {
+        'access_token': (None, response['access_token']),
+        'file': ('Images/'+str(ranInd)+'.jpeg', open('Images/'+str(ranInd)+'.jpg', 'rb')),
+    }
+    response = requests.post(
+        'https://api.zara4.com/v1/image-processing/request', files=files).json()
+    print(response)
+    b64 = base64.b64encode(requests.get(
+        response["generated-images"]["urls"][0]+'?access_token='+AT).content).decode('utf-8')
+    metadata = {'id': DEVICE_ID, 'image': b64}
     payload = json.dumps(metadata)
     print(len(payload))
     mqttc.publish(pubTopic, payload=payload)
