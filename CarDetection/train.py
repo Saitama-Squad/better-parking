@@ -77,3 +77,6 @@ print('')
 print('Percentage correct: ', 100*np.sum(y_pred == y_test)/len(y_test))
 ConfusionMatrixDisplay.from_predictions(y_test,y_pred)
 plt.show()
+
+filename = "savedmodel.sav"
+joblib.dump(sgd_clf,filename)
