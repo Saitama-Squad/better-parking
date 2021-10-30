@@ -59,7 +59,7 @@ while True:
     print(os.listdir())
     files = {
         'access_token': (None, response['access_token']),
-        'file': ('Images/'+str(ranInd)+'.jpeg', open('./Images/'+str(ranInd)+'.jpg', 'rb')),
+        'file': ('VMs/Images/'+str(ranInd)+'.jpeg', open('VMs/Images/'+str(ranInd)+'.jpg', 'rb')),
     }
     response = requests.post(
         'https://api.zara4.com/v1/image-processing/request', files=files).json()
