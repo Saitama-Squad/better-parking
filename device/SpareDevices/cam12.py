@@ -24,8 +24,8 @@ def on_connect(client, userdata, flags, rc):
 
 ORG = "ev8xy3"
 DEVICE_TYPE = "Camera"
-TOKEN = "wwXURnsQ073+mXG&4t"
-DEVICE_ID = "00000003"
+TOKEN = "4!_eKg4kr3JYFhoX4L"
+DEVICE_ID = "00000012"
 server = ORG + ".messaging.internetofthings.ibmcloud.com"
 pubTopic = "iot-2/evt/status/fmt/json"
 authMethod = "use-token-auth"
@@ -58,7 +58,7 @@ while True:
     AT = response['access_token']
     files = {
         'access_token': (None, response['access_token']),
-        'file': ('VMs/Images/'+str(ranInd)+'.jpeg', open('VMs/Images/'+str(ranInd)+'.jpg', 'rb')),
+        'file': ('Images/'+str(ranInd)+'.jpeg', open('Images/'+str(ranInd)+'.jpg', 'rb')),
     }
     response = requests.post(
         'https://api.zara4.com/v1/image-processing/request', files=files).json()
