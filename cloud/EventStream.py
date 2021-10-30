@@ -7,11 +7,16 @@ from kafka.errors import KafkaError
 from dotenv import load_dotenv
 load_dotenv()
 
-bootstrap_kafka_servers = 'broker-4-22l15k93cvmwf56x.kafka.svc07.us-south.eventstreams.cloud.ibm.com:9093,broker-3-22l15k93cvmwf56x.kafka.svc07.us-south.eventstreams.cloud.ibm.com:9093,broker-1-22l15k93cvmwf56x.kafka.svc07.us-south.eventstreams.cloud.ibm.com:9093,broker-0-22l15k93cvmwf56x.kafka.svc07.us-south.eventstreams.cloud.ibm.com:9093,broker-2-22l15k93cvmwf56x.kafka.svc07.us-south.eventstreams.cloud.ibm.com:9093,broker-5-22l15k93cvmwf56x.kafka.svc07.us-south.eventstreams.cloud.ibm.com:9093'.split(
-    ',')
+bootstrap_kafka_servers = [
+    "broker-4-22l15k93cvmwf56x.kafka.svc07.us-south.eventstreams.cloud.ibm.com:9093",
+    "broker-3-22l15k93cvmwf56x.kafka.svc07.us-south.eventstreams.cloud.ibm.com:9093",
+    "broker-1-22l15k93cvmwf56x.kafka.svc07.us-south.eventstreams.cloud.ibm.com:9093",
+    "broker-0-22l15k93cvmwf56x.kafka.svc07.us-south.eventstreams.cloud.ibm.com:9093",
+    "broker-2-22l15k93cvmwf56x.kafka.svc07.us-south.eventstreams.cloud.ibm.com:9093",
+    "broker-5-22l15k93cvmwf56x.kafka.svc07.us-south.eventstreams.cloud.ibm.com:9093"
+    ]
 print("Starting Connection")
-producer = KafkaProducer(bootstrap_servers=bootstrap_kafka_servers,
-                         security_protocol='SASL_SSL', sasl_mechanism='PLAIN', sasl_plain_username='username', sasl_plain_password=os.environ.get('SASL_PLAIN_PASSWORD'), value_serializer=lambda m: json.dumps(m).encode('ascii'))
+producer = KafkaProducer(bootstrap_servers=bootstrap_kafka_servers, security_protocol='SASL_SSL', sasl_mechanism='PLAIN', sasl_plain_username='username', sasl_plain_password='6FSKZVw-tKGxYSOShuUlbE37QU5kZM9ELp4iI2Nc0C5I', value_serializer=lambda m: json.dumps(m).encode('ascii'))
 print("Kafka Broker Connected!")
 
 

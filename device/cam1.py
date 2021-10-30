@@ -9,7 +9,6 @@ import requests
 from dotenv import load_dotenv
 load_dotenv()
 
-
 def on_publish(client, payload, result):
     global pub_flag
     print("Data Published", datetime.datetime.now())
