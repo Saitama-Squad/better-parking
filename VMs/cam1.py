@@ -56,6 +56,7 @@ while True:
     response = requests.post(
         'https://api.zara4.com/oauth/access_token', data=data).json()
     AT = response['access_token']
+    print(os.listdir())
     files = {
         'access_token': (None, response['access_token']),
         'file': ('Images/'+str(ranInd)+'.jpeg', open('./Images/'+str(ranInd)+'.jpg', 'rb')),
