@@ -51,7 +51,8 @@ while loop_flag == 1:
 
 for i in range(2):
     #Simulating Capturing an Image
-    ranInd = random.randint(1, 8)
+    ranInd = 6 #random.randint(1, 8)
+    print(ranInd)
     #Zara4 Compression API (To compress captured image)
     
     ##Request for temp access token

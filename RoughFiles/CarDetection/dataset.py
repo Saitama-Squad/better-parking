@@ -30,7 +30,7 @@ def resize_all(src, pklname, include, width=150, height=None):
                     grayB = cv2.cvtColor(sample, cv2.COLOR_BGR2GRAY)
                     diff = cv2.absdiff(grayB, grayA)
                     ret, thresh = cv2.threshold(diff, 30, 255, cv2.THRESH_BINARY)
-                    im = resize(thresh, (width, height)) #[:,:,::-1]
+                    im = resize(thresh, (height, width)) #[:,:,::-1]
                     data['label'].append(subdir)
                     data['filename'].append(file)
                     data['data'].append(im)
