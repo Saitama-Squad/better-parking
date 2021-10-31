@@ -71,6 +71,9 @@ TwoDim_dataset_test = X_test_gray.reshape(dataset_size,-1)
 print(TwoDim_dataset_test.shape)
 X_test_prepared = scalify.transform(TwoDim_dataset_test)
 
+joblib.dump(scalify,'scalify.sav')
+joblib.dump(grayify,'grayify.sav')
+
 y_pred = sgd_clf.predict(X_test_prepared)
 print(np.array(y_pred == y_test)[:25])
 print('')
