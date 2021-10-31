@@ -1,6 +1,8 @@
+from json import load
 from kafka import KafkaConsumer
 import os
-
+from dotenv import load_dotenv
+load_dotenv()
 bootstrap_kafka_servers = [
     os.environ.get('BROKER1'),
     os.environ.get('BROKER2'),
