@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/status', (request, response) => response.json({ clients: clients.length }));
 
-const PORT = 3001;
+const PORT = 5002;
 
 let clients = [];
 let facts = []
