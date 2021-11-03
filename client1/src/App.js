@@ -1,44 +1,54 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import "./login.css";
+import Floor from "./Floor";
+import Login from "./Login";
 
 function App() {
   const [facts, setFacts] = useState([]);
   const [listening, setListening] = useState(false);
+  const [user, setUser] = useState("");
+  const [floor, setFloor] = useState(1);
+  const [vacancies, setVacancies] = useState({});
+
+  useEffect(() => {
+    let vacant = {};
+    for (let i = 0; i < 5; ++i) {
+      vacant[i] = {};
+      for (let j = 0; j < 30; ++j) {
+        vacant[i][j] = 0;
+      }
+    }
+    setVacancies(vacant);
+  }, []);
 
   useEffect(() => {
     if (!listening) {
-      const events = new EventSource('http://localhost:3001/events');
+      const events = new EventSource("http://localhost:5002/events");
 
       events.onmessage = (event) => {
         const parsedData = JSON.parse(event.data);
+        const { vacant, floor, id } = parsedData;
+        console.log(vacant, floor, id);
 
-        setFacts((facts) => facts.concat(parsedData));
-        console.log(event, facts);
+        setVacancies((data) => {
+          data[floor - 1][id] = vacant;
+          return { ...data };
+        });
       };
 
       setListening(true);
     }
-  }, [listening, facts]);
+  }, [listening]);
 
   return (
-    <table className="stats-table">
-      <thead>
-        <tr>
-          <th>Fact</th>
-          <th>Source</th>
-        </tr>
-      </thead>
-      <tbody>
-        {
-          facts.map((fact, i) =>
-            <tr key={i}>
-              <td>{fact.info}</td>
-              <td>{fact.source}</td>
-            </tr>
-          )
-        }
-      </tbody>
-    </table>
+    <>
+      {user === "" ? (
+        <Login setUser={setUser} />
+      ) : (
+        <Floor setFloor={setFloor} floor={floor} vacancies={vacancies} />
+      )}
+    </>
   );
 }
 

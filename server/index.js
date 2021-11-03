@@ -1,68 +1,68 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
+const express = require("express");
+const cors = require("cors");
 
 const app = express();
 
 app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
-app.get('/status', (request, response) => response.json({ clients: clients.length }));
+app.get("/status", (request, response) =>
+  response.json({ clients: clients.length })
+);
 
-const PORT = 3001;
+const PORT = 5002;
 
+let kafkaData;
 let clients = [];
-let facts = []
 
 app.listen(PORT, () => {
-    console.log(`Facts Events service listening at http://localhost:${PORT}`)
-})
+  console.log(`Facts Events service listening at http://localhost:${PORT}`);
+});
 
+const eventsHandler = (request, response, next) => {
+  const clientId = Date.now();
 
-function eventsHandler(request, response, next) {
-    console.log("Connection Open")
-    const headers = {
-        'Content-Type': 'text/event-stream',
-        'Connection': 'keep-alive',
-        'Cache-Control': 'no-cache'
-    };
-    response.writeHead(200, headers);
+  console.log(`${clientId} Connection open`);
+  const headers = {
+    "Content-Type": "text/event-stream",
+    Connection: "keep-alive",
+    "Cache-Control": "no-cache",
+  };
+  response.writeHead(200, headers);
 
-    const data = `data: ${JSON.stringify(facts)}\n\n`;
+  const data = `data: ${JSON.stringify(kafkaData)}\n\n`;
 
-    response.write(data);
+  response.write(data);
 
-    const clientId = Date.now();
+  const newClient = {
+    id: clientId,
+    response,
+  };
 
-    const newClient = {
-        id: clientId,
-        response
-    };
+  clients.push(newClient);
 
-    clients.push(newClient);
+  request.on("close", () => {
+    console.log(`${clientId} Connection closed`);
+    clients = clients.filter((client) => client.id !== clientId);
+  });
+};
 
-    request.on('close', () => {
-        console.log(`${clientId} Connection closed`);
-        clients = clients.filter(client => client.id !== clientId);
-    });
-}
+app.get("/events", eventsHandler);
 
-app.get('/events', eventsHandler);
+const sendEventsToAll = (newFact) => {
+  clients.forEach((client) =>
+    client.response.write(`data: ${JSON.stringify(newFact)}\n\n`)
+  );
+};
 
-function sendEventsToAll(newFact) {
-    clients.forEach(client => client.response.write(`data: ${JSON.stringify(newFact)}\n\n`))
-}
+const addFact = async (request, respsonse, next) => {
+  const newFact = request.body;
+  console.log(request.body);
+  kafkaData = newFact;
+  respsonse.json(kafkaData);
+  sendEventsToAll(kafkaData);
+  return;
+};
 
-async function addFact(request, respsonse, next) {
-    const newFact = request.body;
-    console.log(request.body)
-    facts.push(newFact);
-    respsonse.json(newFact)
-    sendEventsToAll(newFact);
-    return
-}
-
-app.post('/fact', addFact);
-
-app.get('/facts', (req, res) => { res.send(JSON.stringify(facts)) })
+app.post("/fact", addFact);
