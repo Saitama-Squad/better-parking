@@ -35,7 +35,7 @@ def bytestojson(bytes):
     data = literal_eval(bytes.decode('utf8'))
     s = json.loads(json.dumps(data, indent=4, sort_keys=True))
     s["data"] = json.loads(s["data"])
-    return s["data"]
+    return b64toimage(s["data"]["image"])
 
 
 def b64toimage(b64):
