@@ -84,13 +84,13 @@ while True:
     img_data = img.read()
     b64 = base64.b64encode(img_data).decode('utf-8')
     metadata = {'id': random.randint(
-        1, 30), 'floor': random.randint(1, 2), 'image': b64}
+        1, 132), 'floor': random.randint(1, 5), 'image': b64}
     payload = json.dumps(metadata)
 
     # Publish the Payload
     mqttc.publish(pubTopic, payload=payload)
     # pub_flag = 1
-    sleep(0.5)
+    sleep(2)
     while pub_flag == 1:
         # print('Awaiting Publish Callback')
         # sleep(1)
