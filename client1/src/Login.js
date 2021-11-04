@@ -11,16 +11,17 @@ const Login = ({ setUser }) => {
     <div>
       <h1>Better Parking Welcomes You!!!</h1>
 
-      <form action="/action_page.php" method="post">
-        <div className="imgcontainer">
-          <img src={Avatar} alt="Avatar" className="avatar" />
+      <form className="border-2 border-black border-solid flex flex-col justify-around items-center">
+        <div className="mt-6 mb-3 flex items-center justify-center">
+          <img src={Avatar} alt="Avatar" className="w-4/12 rounded-full" />
         </div>
 
-        <div className="container">
+        <div className="p-4 w-full">
           <label htmlFor="uname">
             <b>Username</b>
           </label>
           <input
+            className="w-full py-3 px-5 my-2 border-2 border-solid border-gray-200 flex justify-center items-center"
             type="text"
             placeholder="Enter Username"
             name="uname"
@@ -32,6 +33,7 @@ const Login = ({ setUser }) => {
             <b>Password</b>
           </label>
           <input
+            className="w-full py-3 px-5 my-2 border-2 border-solid border-gray-200 flex justify-center items-center"
             type="password"
             placeholder="Enter Password"
             name="psw"
@@ -39,7 +41,7 @@ const Login = ({ setUser }) => {
             required
           />
 
-          <button type="submit" className="loginbutton" onClick={loginHandler}>
+          <button type="submit" className="bg-green-600 text-white py-3 px-5 my-2 mx-0 border-none cursor-pointer w-full hover:opacity-80" onClick={loginHandler}>
             Login
           </button>
           <label>
@@ -48,12 +50,12 @@ const Login = ({ setUser }) => {
           </label>
         </div>
 
-        <div className="container" style={{ backgroundColor: "#f1f1f1" }}>
-          <button type="button" className="cancelbtn">
+        <div className="p-4 flex flex-row w-full items-center justify-around" style={{ backgroundColor: "#f1f1f1" }}>
+          <button type="button" className="w-auto py-3 px-4 bg-red-500 text-white">
             Register
           </button>
-          <span className="psw">
-            <a className="fgp" href="/">
+          <span>
+            <a href="/">
               Forgot password?
             </a>
           </span>

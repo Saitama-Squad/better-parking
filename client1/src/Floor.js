@@ -14,7 +14,7 @@ const Floor = ({ setFloor, floor, vacancies }) => {
       let vacant = vacancies[floor - 1][i];
       res.push(
         <div
-          className="grid-item"
+          className="bg-gray-100 border-2 border-solid border-gray-900 p-1 text-lg text-center w-8 h-8"
           style={{ backgroundColor: colors[vacant] }}
         ></div>
       );
@@ -24,20 +24,20 @@ const Floor = ({ setFloor, floor, vacancies }) => {
 
   return (
     <div>
-      <h1>Car Parking</h1>
-      <h2 className="floors">
+      <h1 className="text-5xl text-center">Car Parking</h1>
+      <h2 className='flex flex-col justify-center items-center w-full'>
         Floor {floor}
-        <div className="navs">
+        <div className="flex w-full justify-around items-center">
           {floor > 1 ? (
-            <button onClick={() => FloorChange("l")}>
-              <i class="glyphicon glyphicon-chevron-left next1"></i>
+            <button onClick={() => FloorChange("l")} className="text-xl bg-gray-500 text-white px-5">
+              Previous
             </button>
           ) : (
             <></>
           )}
           {floor < 5 ? (
-            <button onClick={() => FloorChange("r")}>
-              <i class="glyphicon glyphicon-chevron-right next1"></i>
+            <button onClick={() => FloorChange("r")} className="text-xl bg-gray-500 text-white px-5">
+              Next
             </button>
           ) : (
             <></>

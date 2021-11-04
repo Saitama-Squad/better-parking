@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import "./login.css";
 import Floor from "./Floor";
 import Login from "./Login";
 
 function App() {
-  const [facts, setFacts] = useState([]);
   const [listening, setListening] = useState(false);
   const [user, setUser] = useState("");
   const [floor, setFloor] = useState(1);
