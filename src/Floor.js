@@ -15,27 +15,39 @@ const Floor = ({ setFloor, floor, vacancies }) => {
     else setFloor(floor + 1);
   };
 
-  const Tiles = (dir) => {
+  const Tiles = (dir, start) => {
     const res = [];
     const carst = [car1t, car2t, car3t],
       carsb = [car1b, car2b];
-    for (let i = 0; i < 33; ++i) {
-      let vacant = vacancies[floor - 1][i];
+    for (let i = start, j = 0; i < start + 33; ++i, ++j) {
+      let vacant = vacancies[floor - 1][j];
+
+      // let element;
+      // element = document.getElementById(i);
+      // if (
+      //   element &&
+      //   element.attributes &&
+      //   element.attributes.alt &&
+      //   element.attributes.alt.nodeValue
+      // ) {
+      //   const prevVacant = element.attributes.alt.nodeValue == "vacant" ? 1 : 0;
+      //   console.log(prevVacant, vacant);
+        // if (prevVacant == vacant && !prevVacant) {
+        //   res.push(element);
+        //   continue;
+        // }
+      // }
+
       if (vacant) {
         const file = dir === "t" ? Vacantt : Vacantb;
-        res.push(
-          <img
-            className="bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500"
-            src={file}
-          />
-        );
+        res.push(<img src={file} alt="vacant" id={i} />);
       } else {
         if (dir === "t") {
           const file = carst[Math.floor(Math.random() * 3)];
-          res.push(<img className="" src={file} />);
+          res.push(<img className="" src={file} alt="occupied" id={i} />);
         } else {
           const file = carsb[Math.floor(Math.random() * 2)];
-          res.push(<img className="" src={file} />);
+          res.push(<img className="" src={file} alt="occupied" id={i} />);
         }
       }
     }
@@ -71,21 +83,17 @@ const Floor = ({ setFloor, floor, vacancies }) => {
           )}
         </div>
       </div>
-      <div
-        // class="grid-container"
-        className="carpark border border-black h-full w-full flex flex-col m-auto"
-      >
-        {/* {Tiles().map((e) => e)} */}
-        <div className="row1 flex flex-row">{Tiles("b").map((e) => e)}</div>
+      <div className="carpark border border-black h-full w-full flex flex-col m-auto">
+        <div className="row1 flex flex-row">{Tiles("b", 0).map((e) => e)}</div>
         <div className="road-left">
           <img src={RoadLeft} className="w-full h-20" alt="road-left" />
         </div>
-        <div className="row2 flex flex-row">{Tiles("t").map((e) => e)}</div>
-        <div className="row3 flex flex-row">{Tiles("b").map((e) => e)}</div>
+        <div className="row2 flex flex-row">{Tiles("t", 33).map((e) => e)}</div>
+        <div className="row3 flex flex-row">{Tiles("b", 66).map((e) => e)}</div>
         <div className="road-right">
           <img src={RoadRight} className="w-full h-20" alt="road-right" />
         </div>
-        <div className="row4 flex flex-row">{Tiles("t").map((e) => e)}</div>
+        <div className="row4 flex flex-row">{Tiles("t", 99).map((e) => e)}</div>
       </div>
     </div>
   );

@@ -13,7 +13,7 @@ function App() {
     let vacancy = {};
     for (let i = 0; i < 5; ++i) {
       vacancy[i] = {};
-      for (let j = 0; j < 33; ++j) {
+      for (let j = 0; j < 132; ++j) {
         vacancy[i][j] = 1;
       }
     }
@@ -31,6 +31,7 @@ function App() {
         floor = parseInt(floor);
         id = parseInt(id);
         console.log(vacant, floor, id);
+
         setVacancies((data) => {
           data[floor - 1][id] = vacant;
           return { ...data };
@@ -46,7 +47,12 @@ function App() {
       {user === "" ? (
         <Login setUser={setUser} />
       ) : (
-        <Floor setFloor={setFloor} floor={floor} vacancies={vacancies} />
+        <Floor
+          setFloor={setFloor}
+          floor={floor}
+          vacancies={vacancies}
+          appStart={listening}
+        />
       )}
     </div>
   );
