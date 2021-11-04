@@ -10,14 +10,14 @@ function App() {
   const [vacancies, setVacancies] = useState({});
 
   useEffect(() => {
-    let vacant = {};
+    let vacancy = {};
     for (let i = 0; i < 5; ++i) {
-      vacant[i] = {};
-      for (let j = 0; j < 30; ++j) {
-        vacant[i][j] = 0;
+      vacancy[i] = {};
+      for (let j = 0; j < 33; ++j) {
+        vacancy[i][j] = 1;
       }
     }
-    setVacancies(vacant);
+    setVacancies(vacancy);
   }, []);
 
   useEffect(() => {
@@ -26,9 +26,11 @@ function App() {
 
       events.onmessage = (event) => {
         const parsedData = JSON.parse(event.data);
-        const { vacant, floor, id } = parsedData;
+        let { vacant, floor, id } = parsedData;
+        vacant = parseInt(vacant);
+        floor = parseInt(floor);
+        id = parseInt(id);
         console.log(vacant, floor, id);
-
         setVacancies((data) => {
           data[floor - 1][id] = vacant;
           return { ...data };
@@ -40,13 +42,13 @@ function App() {
   }, [listening]);
 
   return (
-    <>
+    <div className="font-montserrat">
       {user === "" ? (
         <Login setUser={setUser} />
       ) : (
         <Floor setFloor={setFloor} floor={floor} vacancies={vacancies} />
       )}
-    </>
+    </div>
   );
 }
 

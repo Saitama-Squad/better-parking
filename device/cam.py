@@ -90,7 +90,7 @@ while True:
     # Publish the Payload
     mqttc.publish(pubTopic, payload=payload)
     # pub_flag = 1
-    sleep(1)
+    sleep(0.5)
     while pub_flag == 1:
         # print('Awaiting Publish Callback')
         # sleep(1)

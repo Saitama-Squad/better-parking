@@ -51,7 +51,6 @@ def pred(sample):
     grayB = cv2.resize(sample, (130, 200))
     grayB = cv2.cvtColor(grayB, cv2.COLOR_BGR2GRAY)
     grayA = cv2.resize(grayA, (130, 200))
-    print(grayA.shape, grayB.shape)
     diff = cv2.absdiff(grayB, grayA)
     ret, thresh = cv2.threshold(diff, 30, 255, cv2.THRESH_BINARY)
     im = resize(thresh, (130, 200))
@@ -59,7 +58,6 @@ def pred(sample):
     scalify = joblib.load(os.path.join(os.getcwd(), 'server', 'scalify.sav'))
     pred_im = grayify.transform([im, ])
     twodim = pred_im.reshape(1, -1)
-    print(twodim.shape)
     prep_im = scalify.transform(twodim)
     sgd_clf = joblib.load(os.path.join(
         os.getcwd(), 'server', 'savedmodel.sav'))
@@ -85,7 +83,6 @@ consumer = KafkaConsumer('alldata',
                          sasl_plain_password=os.environ.get('SASL_PASSWORD')
                          )
 print("Connected!")
-print(consumer.bootstrap_connected)
 
 # Asynchronous by default
 cnt = 0
@@ -97,7 +94,7 @@ for message in consumer:
     predi = 0
     if prediction[0] == 'True':
         predi = 1
-    print(predi, data['floor'], data['id'], cnt)
+    print(data['floor'], data['id'], cnt)
     r = requests.post('http://localhost:5002/fact',
                       data={"vacant": predi, "floor": int(data['floor']), 'id': int(data['id'])})
     print(r)
