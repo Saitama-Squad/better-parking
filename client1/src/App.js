@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import Floor from "./Floor";
 import Login from "./Login";
+import Settings from "./Settings";
 
 function App() {
   const [listening, setListening] = useState(false);
-  const [user, setUser] = useState("");
   const [floor, setFloor] = useState(1);
+  const [page, setPage] = useState("login");
   const [vacancies, setVacancies] = useState({});
 
   useEffect(() => {
@@ -42,20 +43,21 @@ function App() {
     }
   }, [listening]);
 
-  return (
-    <div className="font-montserrat">
-      {user === "" ? (
-        <Login setUser={setUser} />
-      ) : (
+  const changePage = () => {
+    if (page === "floors")
+      return (
         <Floor
           setFloor={setFloor}
           floor={floor}
           vacancies={vacancies}
           appStart={listening}
+          setPage={setPage}
         />
-      )}
-    </div>
-  );
+      );
+    else if (page === "settings") return <Settings setPage={setPage} />;
+    else return <Login  setPage={setPage} />;
+  };
+  return <div className="font-montserrat">{changePage()}</div>;
 }
 
 export default App;

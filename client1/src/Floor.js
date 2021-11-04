@@ -8,8 +8,9 @@ import car2b from "./images/occupied/2b.jpg";
 import car3t from "./images/occupied/3t.jpg";
 import RoadLeft from "./images/road/l.jpg";
 import RoadRight from "./images/road/r.jpg";
+import settings from "./images/settings.png";
 
-const Floor = ({ setFloor, floor, vacancies }) => {
+const Floor = ({ setFloor, floor, vacancies, setPage }) => {
   const FloorChange = (dir) => {
     if (dir === "l") setFloor(floor - 1);
     else setFloor(floor + 1);
@@ -32,10 +33,10 @@ const Floor = ({ setFloor, floor, vacancies }) => {
       // ) {
       //   const prevVacant = element.attributes.alt.nodeValue == "vacant" ? 1 : 0;
       //   console.log(prevVacant, vacant);
-        // if (prevVacant == vacant && !prevVacant) {
-        //   res.push(element);
-        //   continue;
-        // }
+      // if (prevVacant == vacant && !prevVacant) {
+      //   res.push(element);
+      //   continue;
+      // }
       // }
 
       if (vacant) {
@@ -54,12 +55,20 @@ const Floor = ({ setFloor, floor, vacancies }) => {
     return res;
   };
 
+  const goToSettings = () => {
+    // setPage("settings");
+    // window.open("http://localhost:3000");
+  };
+
   return (
     <div className="overflow-hidden">
       <div className="header flex flex-row justify-between items-center mx-2 my-2">
         <h2 className="flex justify-start items-center w-full text-5xl">
           Floor {floor}
         </h2>
+        <button className="settings" onClick={goToSettings}>
+          <img src={settings} alt="" />
+        </button>
         <div className="flex w-full justify-end items-center select-none">
           {floor > 1 ? (
             <button

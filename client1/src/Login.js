@@ -1,14 +1,14 @@
 import React from "react";
 import Avatar from "./images/avatar.png";
 
-const Login = ({ setUser }) => {
+const Login = ({ setPage }) => {
   const loginHandler = (e) => {
     e.preventDefault();
-    setUser("admin");
+    setPage("floors");
   };
 
   return (
-    <div className='px-16 mt-10'>
+    <div className="px-16 mt-10">
       <h1 className="text-6xl text-center pb-7">
         Better Parking Welcomes You!!!
       </h1>
