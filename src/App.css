@@ -1,20 +1,29 @@
 body {
-  font-family: "Montserrat", sans-serif !important;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #555;
-  line-height: 1.5;
+    font-family: "Montserrat", sans-serif !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #555;
+    line-height: 1.5;
 }
 
 .grid-container {
-  margin: 1vw;
-  display: grid;
-  grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
-  grid-column-gap: 1vw;
-  grid-row-gap: 1vw;
-  padding: 1vw;
-  background-color: #4f524f;
+    margin: 1vw;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
+    grid-column-gap: 1vw;
+    grid-row-gap: 1vw;
+    padding: 1vw;
+    background-color: #4f524f;
 }
 .carpark {
-  width: fit-content;
+    width: fit-content;
+}
+.toggle-checkbox:checked {
+    @apply: right-0 border-green-400;
+    right: 0;
+    border-color: #68d391;
+}
+.toggle-checkbox:checked + .toggle-label {
+    @apply: bg-green-400;
+    background-color: #68d391;
 }
