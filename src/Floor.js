@@ -8,14 +8,45 @@ import car2b from "./images/occupied/2b.jpg";
 import car3t from "./images/occupied/3t.jpg";
 import RoadLeft from "./images/road/l.jpg";
 import RoadRight from "./images/road/r.jpg";
-// import axios from 'axios'
+import axios from 'axios'
 
 const Floor = ({ setFloor, floor, vacancies, setPage }) => {
   const [toggle, setToggle] = useState(0);
   
   useEffect(() => {
     if (toggle === 1) {
-      // call the heroku api from here and uncomment line 11 if axios is used
+        var token="68807f1b-504c-4179-bcf5-770e876bb171"
+        axios.patch('https://api.heroku.com/apps/better-parking-backup/formation',{
+            "updates": [
+                {
+                  "quantity": 1,
+                  "size": "free",
+                  "type": "worker1"
+                }
+              ]
+        },{
+            headers:{
+                Accept: "application/vnd.heroku+json; version=3",
+                Authorization: 'Bearer ' + token
+            }
+        }).then(res => console.log(res.data));
+    }
+    if (toggle === 0) {
+        var token="68807f1b-504c-4179-bcf5-770e876bb171"
+        axios.patch('https://api.heroku.com/apps/better-parking-backup/formation',{
+            "updates": [
+                {
+                  "quantity": 0,
+                  "size": "free",
+                  "type": "worker1"
+                }
+              ]
+        },{
+            headers:{
+                Accept: "application/vnd.heroku+json; version=3",
+                Authorization: 'Bearer ' + token
+            }
+        }).then(res => console.log(res.data));
     }
   },[toggle])
 
