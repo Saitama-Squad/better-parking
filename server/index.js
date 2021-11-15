@@ -12,7 +12,7 @@ app.get("/status", (request, response) =>
     response.json({ clients: clients.length })
 );
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5005;
 
 let kafkaData;
 let clients = [];
@@ -23,11 +23,13 @@ app.listen(PORT, () => {
 
 const eventsHandler = (request, response, next) => {
     const clientId = Date.now();
-
+    const origin = req.get("origin");
+    console.log(origin);
     console.log(`${clientId} Connection open`);
     const headers = {
         "Content-Type": "text/event-stream",
         "Access-Control-Allow-Origin": "http://localhost:3000",
+        "Access-Control-Allow-Credentials": true,
         Connection: "keep-alive",
         "Cache-Control": "no-cache",
     };
