@@ -96,5 +96,6 @@ for message in consumer:
         predi = 1
     print(data['floor'], data['id'], cnt)
     r = requests.post(' https://better-parking-backup.herokuapp.com/fact',
-                      data={"vacant": predi, "floor": int(data['floor']), 'id': int(data['id'])})
+                      data={"vacant": predi, "floor": int(data['floor']), 'id': int(data['id'])},
+                        headers={"Access-Control-Allow-Origin":"*"})
     print(r)
