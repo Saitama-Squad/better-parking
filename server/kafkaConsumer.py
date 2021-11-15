@@ -95,6 +95,6 @@ for message in consumer:
     if prediction[0] == 'True':
         predi = 1
     print(data['floor'], data['id'], cnt)
-    r = requests.post('http://localhost:5002/fact',
+    r = requests.post(' https://better-parking-backup.herokuapp.com/fact',
                       data={"vacant": predi, "floor": int(data['floor']), 'id': int(data['id'])})
     print(r)
