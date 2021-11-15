@@ -1,1 +1,1 @@
-worker1: python cloud/EventStream.py
+worker1: python device/cam.py

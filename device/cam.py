@@ -23,7 +23,7 @@ def on_connect(client, userdata, flags, rc):
 
 
 def gen(DEVICE_ID):
-    ORG = 'ev8xy3'
+    ORG = 'ipj34b'
     DEVICE_TYPE = 'Camera'
     server = ORG + ".messaging.internetofthings.ibmcloud.com"
     clientId = "d:"+ORG+":"+DEVICE_TYPE+":"+DEVICE_ID
@@ -34,7 +34,7 @@ def gen(DEVICE_ID):
 DEVICE_ID = "00000001"
 pubTopic = "iot-2/evt/status/fmt/json"
 authMethod = "use-token-auth"
-token = '4!_eKg4kr3JYFhoX4L'
+token = 'RjElKIm*_l0Ver65zK'
 server, clientId = gen(DEVICE_ID)
 
 # MQTT Connect
