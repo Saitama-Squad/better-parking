@@ -12,7 +12,7 @@ app.get("/status", (request, response) =>
   response.json({ clients: clients.length })
 );
 
-const PORT = 5002;
+const PORT = 5000;
 
 let kafkaData;
 let clients = [];
