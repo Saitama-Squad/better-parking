@@ -23,7 +23,7 @@ function App() {
 
   useEffect(() => {
     if (!listening) {
-      const events = new EventSource("http://localhost:5002/events");
+      const events = new EventSource("https://better-parking-backup.herokuapp.com/events");
 
       events.onmessage = (event) => {
         const parsedData = JSON.parse(event.data);
