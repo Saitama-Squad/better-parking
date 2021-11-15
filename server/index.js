@@ -23,7 +23,7 @@ app.listen(PORT, () => {
 
 const eventsHandler = (request, response, next) => {
     const clientId = Date.now();
-    const origin = req.get("origin");
+    const origin = request.get("origin");
     console.log(origin);
     console.log(`${clientId} Connection open`);
     const headers = {
