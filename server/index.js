@@ -27,7 +27,7 @@ const eventsHandler = (request, response, next) => {
     console.log(`${clientId} Connection open`);
     const headers = {
         "Content-Type": "text/event-stream",
-        "Access-Control-Allow-Origin": "http://localhost:3000/",
+        "Access-Control-Allow-Origin": "http://localhost:3000",
         Connection: "keep-alive",
         "Cache-Control": "no-cache",
     };
