@@ -3,7 +3,7 @@ import Avatar from "./images/avatar.png";
 import Font from "react-font";
 import Loader from "./Loader";
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import firebase from "./firebaseConfig";
 const Login = ({ setPage }) => {
@@ -25,21 +25,26 @@ const Login = ({ setPage }) => {
     }
     else {
       const auth = getAuth();
-      try {
-        const userCredential = await signInWithEmailAndPassword(
+      signInWithEmailAndPassword(
           auth,
           username,
           password
-        );
-        const user = userCredential.user;
-        console.log(user)
-      }
-      catch {
-
-      }
+        ).then((userCredential)=>{
+          const user = userCredential.user;
+        }).catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode,errorMessage);
+        });
+        onAuthStateChanged(auth, (user) => {
+          if (user) {
+            setLoader(false);
+            setPage("floors");
+          } else {
+            console.log('Auth Failed');
+          }
+        });
     }
-    setLoader(false);
-    //setPage("floors");
   };
 
   return (
