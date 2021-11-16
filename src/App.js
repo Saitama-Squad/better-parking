@@ -29,6 +29,7 @@ function App() {
             );
 
             events.onmessage = async (event) => {
+                console.log(event);
                 const parsedData = JSON.parse(event.data);
                 let { vacant, floor, id } = parsedData;
                 vacant = parseInt(vacant);

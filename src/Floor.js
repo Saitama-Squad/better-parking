@@ -8,47 +8,59 @@ import car2b from "./images/occupied/2b.jpg";
 import car3t from "./images/occupied/3t.jpg";
 import RoadLeft from "./images/road/l.jpg";
 import RoadRight from "./images/road/r.jpg";
-import axios from 'axios'
+import axios from "axios";
 
 const Floor = ({ setFloor, floor, vacancies, setPage }) => {
-  const [toggle, setToggle] = useState(0);
-  
-  useEffect(() => {
-    if (toggle === 1) {
-        var token="68807f1b-504c-4179-bcf5-770e876bb171"
-        axios.patch('https://api.heroku.com/apps/better-parking-backup/formation',{
-            "updates": [
-                {
-                  "quantity": 1,
-                  "size": "free",
-                  "type": "worker1"
-                }
-              ]
-        },{
-            headers:{
-                Accept: "application/vnd.heroku+json; version=3",
-                Authorization: 'Bearer ' + token
-            }
-        }).then(res => console.log(res.data));
-    }
-    if (toggle === 0) {
-        var token="68807f1b-504c-4179-bcf5-770e876bb171"
-        axios.patch('https://api.heroku.com/apps/better-parking-backup/formation',{
-            "updates": [
-                {
-                  "quantity": 0,
-                  "size": "free",
-                  "type": "worker1"
-                }
-              ]
-        },{
-            headers:{
-                Accept: "application/vnd.heroku+json; version=3",
-                Authorization: 'Bearer ' + token
-            }
-        }).then(res => console.log(res.data));
-    }
-  },[toggle])
+    const [toggle, setToggle] = useState(0);
+
+    useEffect(() => {
+        if (toggle === 1) {
+            var token = "68807f1b-504c-4179-bcf5-770e876bb171";
+            axios
+                .patch(
+                    "https://api.heroku.com/apps/better-parking-backup/formation",
+                    {
+                        updates: [
+                            {
+                                quantity: 1,
+                                size: "free",
+                                type: "worker1",
+                            },
+                        ],
+                    },
+                    {
+                        headers: {
+                            Accept: "application/vnd.heroku+json; version=3",
+                            Authorization: "Bearer " + token,
+                        },
+                    }
+                )
+                .then((res) => console.log(res.data));
+        }
+        if (toggle === 0) {
+            var token = "68807f1b-504c-4179-bcf5-770e876bb171";
+            axios
+                .patch(
+                    "https://api.heroku.com/apps/better-parking-backup/formation",
+                    {
+                        updates: [
+                            {
+                                quantity: 0,
+                                size: "free",
+                                type: "worker1",
+                            },
+                        ],
+                    },
+                    {
+                        headers: {
+                            Accept: "application/vnd.heroku+json; version=3",
+                            Authorization: "Bearer " + token,
+                        },
+                    }
+                )
+                .then((res) => console.log(res.data));
+        }
+    }, [toggle]);
 
     const FloorChange = (dir) => {
         if (dir === "l") setFloor(floor - 1);
@@ -60,21 +72,33 @@ const Floor = ({ setFloor, floor, vacancies, setPage }) => {
         const carst = [car1t, car2t, car3t],
             carsb = [car1b, car2b];
         for (let i = start, j = 0; i < start + 33; ++i, ++j) {
-          let vacant = vacancies[floor - 1][j];
-          
+            let vacant = vacancies[floor - 1][j];
+
             if (vacant) {
                 const file = dir === "t" ? Vacantt : Vacantb;
-                res.push(<img src={file} alt="vacant" id={i} />);
+                res.push(<img src={file} alt="vacant" id={i} key={i} />);
             } else {
                 if (dir === "t") {
                     const file = carst[Math.floor(Math.random() * 3)];
                     res.push(
-                        <img className="" src={file} alt="occupied" id={i} />
+                        <img
+                            className=""
+                            src={file}
+                            alt="occupied"
+                            id={i}
+                            key={i}
+                        />
                     );
                 } else {
                     const file = carsb[Math.floor(Math.random() * 2)];
                     res.push(
-                        <img className="" src={file} alt="occupied" id={i} />
+                        <img
+                            className=""
+                            src={file}
+                            alt="occupied"
+                            id={i}
+                            key={i}
+                        />
                     );
                 }
             }
@@ -83,9 +107,9 @@ const Floor = ({ setFloor, floor, vacancies, setPage }) => {
     };
 
     return (
-        <div className="overflow-hidden">
+        <div className="overflow-hidden w-screen h-screen floor-container">
             <div className="header flex flex-row justify-between items-center mx-2 my-2">
-                <h2 className="flex justify-start items-center w-full text-5xl">
+                <h2 className="flex justify-start items-center w-full text-5xl text-white">
                     Floor {floor}
                 </h2>
                 <div className="relative inline-block w-28 mr-2 align-middle select-none transition duration-200 ease-in">
@@ -97,11 +121,11 @@ const Floor = ({ setFloor, floor, vacancies, setPage }) => {
                         onChange={() => setToggle(toggle ^ 1)}
                     />
                     <label
-                        for="toggle"
+                        htmlFor="toggle"
                         className="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"
                     ></label>
                 </div>
-                <label for="toggle" class="text-xs text-gray-700">
+                <label htmlFor="toggle" className="text-xs text-white">
                     Toggle Simulation
                 </label>
                 <div className="flex w-full justify-end items-center select-none">
