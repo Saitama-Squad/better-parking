@@ -1,4 +1,8 @@
 body {
+    background-image: url("./images/img.jpg");
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
     font-family: "Montserrat", sans-serif !important;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -6,15 +10,6 @@ body {
     line-height: 1.5;
 }
 
-.grid-container {
-    margin: 1vw;
-    display: grid;
-    grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
-    grid-column-gap: 1vw;
-    grid-row-gap: 1vw;
-    padding: 1vw;
-    background-color: #4f524f;
-}
 .carpark {
     width: fit-content;
 }
@@ -26,4 +21,7 @@ body {
 .toggle-checkbox:checked + .toggle-label {
     @apply: bg-green-400;
     background-color: #68d391;
+}
+.floor-container {
+    background-color: rgba(0, 0, 0, 0.7);
 }
