@@ -95,6 +95,7 @@ for message in consumer:
     if prediction[0] == 'True':
         predi = 1
     print(data['floor'], data['id'], cnt)
-    r = requests.post('http://localhost:5002/fact',
-                      data={"vacant": predi, "floor": int(data['floor']), 'id': int(data['id'])})
+    r = requests.post(' https://better-parking-backup.herokuapp.com/fact',
+                      data={"vacant": predi, "floor": int(data['floor']), 'id': int(data['id'])},
+                        headers={"Access-Control-Allow-Origin":"*"})
     print(r)
