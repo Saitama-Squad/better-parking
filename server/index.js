@@ -28,7 +28,7 @@ const eventsHandler = (request, response, next) => {
     console.log(`${clientId} Connection open`);
     const headers = {
         "Content-Type": "text/event-stream",
-        "Access-Control-Allow-Origin": ["https://better-parking-frontend.herokuapp.com","https://localhost:3001"],
+        "Access-Control-Allow-Origin": origin,
         "Access-Control-Allow-Credentials": true,
         Connection: "keep-alive",
         "Cache-Control": "no-cache",
