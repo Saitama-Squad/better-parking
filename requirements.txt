@@ -16,7 +16,7 @@ MarkupSafe==2.0.1
 matplotlib==3.4.3
 networkx==2.6.3
 numpy==1.21.3
-opencv-python-headless==4.2.0.32
+opencv-python
 paho-mqtt==1.6.1
 Pillow==8.4.0
 pycodestyle==2.8.0
