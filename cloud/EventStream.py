@@ -2,8 +2,7 @@ import wiotp.sdk.application
 import json
 from kafka import KafkaProducer
 import os
-from dotenv import load_dotenv
-load_dotenv()
+
 def eventCallback(event):
     data = json.dumps(event.data)
     producer.send('alldata',  {'data': data})

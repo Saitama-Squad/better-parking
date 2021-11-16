@@ -2,7 +2,6 @@ from json import load
 import joblib
 from kafka import KafkaConsumer
 import os
-from dotenv import load_dotenv
 from ast import literal_eval
 import json
 import numpy as np
@@ -13,11 +12,8 @@ import matplotlib.pyplot as plt
 import cv2
 import requests
 from skimage.transform import resize
-from sklearn.preprocessing import StandardScaler, Normalizer
 from sklearn.base import BaseEstimator, TransformerMixin
 from skimage.color import rgb2gray
-
-load_dotenv()
 
 
 class RGB2GrayTransformer(BaseEstimator, TransformerMixin):
