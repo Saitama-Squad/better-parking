@@ -7,13 +7,13 @@ import 'firebase/compat/auth';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: process.env.REACT_APP_API_KEY,
-    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-    projectId: process.env.REACT_APP_PROJECTID,
-    storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
-    messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
-    appId: process.env.REACT_APP_APPID,
-    measurementId: process.env.REACT_APP_MEASUREMENTID
+    apiKey: "AIzaSyBksIoBFT24_VbWz19mWcAXAPkjWpqznXw",
+    authDomain: "better-parking.firebaseapp.com",
+    projectId: "better-parking",
+    storageBucket: "better-parking.appspot.com",
+    messagingSenderId: "841979575193",
+    appId: "1:841979575193:web:81616e002ed7c4379ff108",
+    measurementId: "G-BYM6MNK0MX"
 };
 
 
