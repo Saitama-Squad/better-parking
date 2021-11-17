@@ -15,96 +15,132 @@ const Floor = ({ setFloor, floor, vacancies, setPage }) => {
 
     useEffect(() => {
         if (toggle === 1) {
-            var token="68807f1b-504c-4179-bcf5-770e876bb171"
-            axios.patch('https://api.heroku.com/apps/better-parking-backup/formation',{
-                "updates": [
+            var token = "68807f1b-504c-4179-bcf5-770e876bb171";
+            axios
+                .patch(
+                    "https://api.heroku.com/apps/better-parking-backup/formation",
                     {
-                      "quantity": 1,
-                      "size": "free",
-                      "type": "worker1"
-                    }
-                  ]
-            },{
-                headers:{
-                    Accept: "application/vnd.heroku+json; version=3",
-                    Authorization: 'Bearer ' + token
-                }
-            }).then(res => console.log(res.data));
-            axios.patch('https://api.heroku.com/apps/better-parking/formation',{
-                "updates": [
+                        updates: [
+                            {
+                                quantity: 1,
+                                size: "free",
+                                type: "worker1",
+                            },
+                        ],
+                    },
                     {
-                      "quantity": 1,
-                      "size": "free",
-                      "type": "worker2"
+                        headers: {
+                            Accept: "application/vnd.heroku+json; version=3",
+                            Authorization: "Bearer " + token,
+                        },
                     }
-                  ]
-            },{
-                headers:{
-                    Accept: "application/vnd.heroku+json; version=3",
-                    Authorization: 'Bearer ' + token
-                }
-            }).then(res => console.log(res.data));
-            axios.patch('https://api.heroku.com/apps/better-parking/formation',{
-                "updates": [
+                )
+                .then((res) => console.log(res.data));
+            axios
+                .patch(
+                    "https://api.heroku.com/apps/better-parking/formation",
                     {
-                      "quantity": 1,
-                      "size": "free",
-                      "type": "worker1"
+                        updates: [
+                            {
+                                quantity: 1,
+                                size: "free",
+                                type: "worker2",
+                            },
+                        ],
+                    },
+                    {
+                        headers: {
+                            Accept: "application/vnd.heroku+json; version=3",
+                            Authorization: "Bearer " + token,
+                        },
                     }
-                  ]
-            },{
-                headers:{
-                    Accept: "application/vnd.heroku+json; version=3",
-                    Authorization: 'Bearer ' + token
-                }
-            }).then(res => console.log(res.data));
+                )
+                .then((res) => console.log(res.data));
+            axios
+                .patch(
+                    "https://api.heroku.com/apps/better-parking/formation",
+                    {
+                        updates: [
+                            {
+                                quantity: 1,
+                                size: "free",
+                                type: "worker1",
+                            },
+                        ],
+                    },
+                    {
+                        headers: {
+                            Accept: "application/vnd.heroku+json; version=3",
+                            Authorization: "Bearer " + token,
+                        },
+                    }
+                )
+                .then((res) => console.log(res.data));
         }
         if (toggle === 0) {
-            var token="68807f1b-504c-4179-bcf5-770e876bb171"
-            axios.patch('https://api.heroku.com/apps/better-parking-backup/formation',{
-                "updates": [
+            var token = "68807f1b-504c-4179-bcf5-770e876bb171";
+            axios
+                .patch(
+                    "https://api.heroku.com/apps/better-parking-backup/formation",
                     {
-                      "quantity": 0,
-                      "size": "free",
-                      "type": "worker1"
-                    }
-                  ]
-            },{
-                headers:{
-                    Accept: "application/vnd.heroku+json; version=3",
-                    Authorization: 'Bearer ' + token
-                }
-            }).then(res => console.log(res.data));
-            axios.patch('https://api.heroku.com/apps/better-parking/formation',{
-                "updates": [
+                        updates: [
+                            {
+                                quantity: 0,
+                                size: "free",
+                                type: "worker1",
+                            },
+                        ],
+                    },
                     {
-                      "quantity": 0,
-                      "size": "free",
-                      "type": "worker2"
+                        headers: {
+                            Accept: "application/vnd.heroku+json; version=3",
+                            Authorization: "Bearer " + token,
+                        },
                     }
-                  ]
-            },{
-                headers:{
-                    Accept: "application/vnd.heroku+json; version=3",
-                    Authorization: 'Bearer ' + token
-                }
-            }).then(res => console.log(res.data));
-            axios.patch('https://api.heroku.com/apps/better-parking/formation',{
-                "updates": [
+                )
+                .then((res) => console.log(res.data));
+            axios
+                .patch(
+                    "https://api.heroku.com/apps/better-parking/formation",
                     {
-                      "quantity": 0,
-                      "size": "free",
-                      "type": "worker1"
+                        updates: [
+                            {
+                                quantity: 0,
+                                size: "free",
+                                type: "worker2",
+                            },
+                        ],
+                    },
+                    {
+                        headers: {
+                            Accept: "application/vnd.heroku+json; version=3",
+                            Authorization: "Bearer " + token,
+                        },
                     }
-                  ]
-            },{
-                headers:{
-                    Accept: "application/vnd.heroku+json; version=3",
-                    Authorization: 'Bearer ' + token
-                }
-            }).then(res => console.log(res.data));
+                )
+                .then((res) => console.log(res.data));
+            axios
+                .patch(
+                    "https://api.heroku.com/apps/better-parking/formation",
+                    {
+                        updates: [
+                            {
+                                quantity: 0,
+                                size: "free",
+                                type: "worker1",
+                            },
+                        ],
+                    },
+                    {
+                        headers: {
+                            Accept: "application/vnd.heroku+json; version=3",
+                            Authorization: "Bearer " + token,
+                        },
+                    }
+                )
+                .then((res) => console.log(res.data));
         }
-      },[toggle])
+    }, [toggle]);
 
     const FloorChange = (dir) => {
         if (dir === "l") setFloor(floor - 1);
@@ -123,7 +159,7 @@ const Floor = ({ setFloor, floor, vacancies, setPage }) => {
                 res.push(<img src={file} alt="vacant" id={i} key={i} />);
             } else {
                 if (dir === "t") {
-                    const file = carst[Math.floor(Math.random() * 3)];
+                    const file = carst[i % 3];
                     res.push(
                         <img
                             className=""
@@ -134,7 +170,7 @@ const Floor = ({ setFloor, floor, vacancies, setPage }) => {
                         />
                     );
                 } else {
-                    const file = carsb[Math.floor(Math.random() * 2)];
+                    const file = carsb[i % 2];
                     res.push(
                         <img
                             className=""
